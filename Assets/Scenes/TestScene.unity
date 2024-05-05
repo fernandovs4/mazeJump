@@ -1865,10 +1865,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db45c751b852a10459886716edfdd48e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countDown: 0
+  countDown: 1
   playerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
 --- !u!1001 &1201076414
 PrefabInstance:
   m_ObjectHideFlags: 0
