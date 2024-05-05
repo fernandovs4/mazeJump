@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 1655352528504904306}
   - component: {fileID: 8125371327229612168}
   - component: {fileID: 6620884556854190309}
-  m_Layer: 0
-  m_Name: SpikesAfterTimeTile
-  m_TagString: SpikesAfterTime
+  m_Layer: 6
+  m_Name: ExpandingBallSpikes
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.054901958, g: 0.9607843, b: 0.13785157, a: 1}
+  m_Color: {r: 1, g: 0.42794973, b: 0.16470587, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

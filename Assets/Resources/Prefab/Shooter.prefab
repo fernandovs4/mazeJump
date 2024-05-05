@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 1655352528504904306}
   - component: {fileID: 8125371327229612168}
   - component: {fileID: 6620884556854190309}
+  - component: {fileID: 8232570316754855155}
   m_Layer: 0
-  m_Name: SpikesAfterTimeTile
-  m_TagString: SpikesAfterTime
+  m_Name: Shooter
+  m_TagString: Shooter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.054901958, g: 0.9607843, b: 0.13785157, a: 1}
+  m_Color: {r: 0.06863142, g: 0.4188679, b: 0.01817724, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -130,3 +131,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &8232570316754855155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6955794188126466686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35a4b0f024a0a0743be237a1192c1230, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointingDirection: 0
+  projectVelocity: 10
+  timeBetweenShot: 3
+  projectile: {fileID: 6955794188126466686, guid: 86ac4f4b3a3d220499305b29880ed71e, type: 3}
