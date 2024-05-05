@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         if (movingHorizontally){
-            if (Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.left), 1, obstacleMask) || Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.right), 1, obstacleMask)){
+            if (Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.left), 1.0f, obstacleMask) || Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.right), 1.0f, obstacleMask)){
                 canCheck = true;
             }
             else{
@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         else{
-            if (Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.up), 1, obstacleMask) || Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.down), 1, obstacleMask)){
+            if (Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.up), 1.0f, obstacleMask) || Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.down), 1.0f, obstacleMask)){
                 canCheck = true;
             }
             else{
