@@ -29,15 +29,19 @@ public class PlayerCollisionManager : MonoBehaviour
         switch (player.movingDir){
             case Direction.North:
                 hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.up), 1, obstacleMask);
+                Debug.DrawRay(transform.position, transform.TransformDirection(Vector2.up), Color.green, 1);
                 break;
             case Direction.South:
                 hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.down), 1, obstacleMask);
+                Debug.DrawRay(transform.position, transform.TransformDirection(Vector2.down), Color.green, 1);
                 break;
             case Direction.East:
                 hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.right), 1, obstacleMask);
+                Debug.DrawRay(transform.position, transform.TransformDirection(Vector2.right), Color.green, 1);
                 break;
             case Direction.West:
                 hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.left), 1, obstacleMask);
+                Debug.DrawRay(transform.position, transform.TransformDirection(Vector2.left), Color.green, 1);
                 break;
         }
           if (hit != null){
