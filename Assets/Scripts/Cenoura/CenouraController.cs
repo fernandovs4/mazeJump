@@ -66,8 +66,8 @@ public class CenouraController : MonoBehaviour
 
     IEnumerator DesativarCenoura(){
         Debug.Log("Entrou na rotina de desativar cenoura");
-        cenouraAnimator.SetBool("Cenoura_ativa", false);
         yield return new WaitForSeconds(tempoParaDesativarCenoura);
+        cenouraAnimator.SetBool("Cenoura_ativa", false);
         cenouraEstaAtiva = false;
         canBeActivated = true;                  
     }                     

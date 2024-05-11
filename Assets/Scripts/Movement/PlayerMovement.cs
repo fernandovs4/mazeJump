@@ -115,49 +115,51 @@ public enum Direction
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] LayerMask obstacleMask;
-    [SerializeField]  bool movingHorizontally = false, canCheck = true;
+    // [SerializeField] LayerMask obstacleMask;
     public float speed;
     Rigidbody2D rb;
- 
-  
+
+    public bool playerIsMoving;
+
+    public int contador_colisao = 0;
+    public int contador_saiu_colisao = 0;
 
     public Direction movingDir;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerIsMoving = true;
         
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        // check if the player is colliding with an object with the obstacle layer mask
+        if (other.gameObject.layer == LayerMask.NameToLayer("Obstacle")){
+            Debug.Log("Entrou na colisão com obstaculo");
+            playerIsMoving = false;
+            contador_colisao++;
+        }
+        
+    }
+
+    private void OnCollisionExit2D(Collision2D other) {
+         Debug.Log(other.gameObject.layer);
+         Debug.Log(LayerMask.NameToLayer("Obstacle"));
+        if (other.gameObject.layer == LayerMask.NameToLayer("Obstacle")){
+            Debug.Log("Saiu da colisão com obstaculo");
+            playerIsMoving = true;
+            contador_saiu_colisao++;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (movingHorizontally){
-            if (Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.left), 1.0f, obstacleMask) || Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.right), 1.0f, obstacleMask)){
-                canCheck = true;
-            }
-            else{
-                canCheck = false;
-            }
-        }
-        else{
-            if (Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.up), 1.0f, obstacleMask) || Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.down), 1.0f, obstacleMask)){
-                canCheck = true;
-            }
-            else{
-                canCheck = false;
-            }
-        }
-
-    
-
+        if (playerIsMoving) return;
         
-
-        if (canCheck){
-            if (Input.GetAxisRaw("Horizontal") != 0){
+        if (Input.GetAxisRaw("Horizontal") != 0){
             rb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
-            movingHorizontally = true;
             if (Input.GetAxisRaw("Horizontal") > 0)
             {
                 movingDir = Direction.East;
@@ -166,11 +168,11 @@ public class PlayerMovement : MonoBehaviour
             {
                 movingDir = Direction.West;
             }
+            DefineVelocity();
         }
         else if (Input.GetAxisRaw("Vertical") != 0){
-            rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation ;
-            movingHorizontally = false;
-             if (Input.GetAxisRaw("Vertical") > 0)
+            rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+            if (Input.GetAxisRaw("Vertical") > 0)
             {
                 movingDir = Direction.North;
             }
@@ -178,14 +180,13 @@ public class PlayerMovement : MonoBehaviour
             {
                 movingDir = Direction.South;
             }
+            DefineVelocity();
         }
-            
-        }
-        
+    
         
     }
 
-    void FixedUpdate(){
+    void DefineVelocity(){
         switch (movingDir)
         {
             case Direction.North:
@@ -201,5 +202,10 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = new Vector2(-speed*Time.fixedDeltaTime, 0);
                 break;
         }
+    }
+
+    void FixedUpdate(){
+        if (!playerIsMoving) return;
+        DefineVelocity();
     }
 }
