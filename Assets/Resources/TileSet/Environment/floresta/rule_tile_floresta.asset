@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
   m_Name: rule_tile_floresta
   m_EditorClassIdentifier: 
-  m_DefaultSprite: {fileID: 282255662, guid: e26a4c585b07f0141baed9e94098a18e, type: 3}
+  m_DefaultSprite: {fileID: -808960248, guid: f3cb1c61b8ac410498f72f22ef418322, type: 3}
   m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 1
   m_TilingRules:
@@ -154,7 +154,7 @@ MonoBehaviour:
     m_RuleTransform: 0
   - m_Id: 8
     m_Sprites:
-    - {fileID: 1027564098, guid: e26a4c585b07f0141baed9e94098a18e, type: 3}
+    - {fileID: 170859320, guid: f3cb1c61b8ac410498f72f22ef418322, type: 3}
     m_GameObject: {fileID: 0}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
@@ -192,7 +192,7 @@ MonoBehaviour:
     m_RuleTransform: 0
   - m_Id: 10
     m_Sprites:
-    - {fileID: -398876769, guid: e26a4c585b07f0141baed9e94098a18e, type: 3}
+    - {fileID: -398876769, guid: f3cb1c61b8ac410498f72f22ef418322, type: 3}
     m_GameObject: {fileID: 0}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
@@ -211,7 +211,7 @@ MonoBehaviour:
     m_RuleTransform: 0
   - m_Id: 11
     m_Sprites:
-    - {fileID: -1832171051, guid: e26a4c585b07f0141baed9e94098a18e, type: 3}
+    - {fileID: -1832171051, guid: f3cb1c61b8ac410498f72f22ef418322, type: 3}
     m_GameObject: {fileID: 0}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
