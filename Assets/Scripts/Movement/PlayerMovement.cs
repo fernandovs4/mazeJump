@@ -26,61 +26,69 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (Input.touchCount > 0)
+        if (rb.velocity == Vector2.zero) // Only allow new movement if the player is not moving
         {
-            Touch touch = Input.GetTouch(0);
-
-            switch (touch.phase)
+            if (Input.touchCount > 0)
             {
-                case TouchPhase.Began:
-                    startTouchPosition = touch.position;
-                    swipeRegistered = false;
-                    break;
+                Touch touch = Input.GetTouch(0);
 
-                case TouchPhase.Moved:
-                    if (!swipeRegistered) // Check if swipe direction is not yet registered
-                    {
-                        Vector2 touchEndPosition = touch.position;
-                        Vector2 direction = touchEndPosition - startTouchPosition;
+                switch (touch.phase)
+                {
+                    case TouchPhase.Began:
+                        startTouchPosition = touch.position;
+                        swipeRegistered = false;
+                        break;
 
-                        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+                    case TouchPhase.Moved:
+                        if (!swipeRegistered) // Check if swipe direction is not yet registered
                         {
-                            // Horizontal swipe
-                            movingHorizontally = true;
-                            canCheck = !Physics2D.Raycast(transform.position, direction.x > 0 ? Vector2.right : Vector2.left, 1.0f, obstacleMask);
-                            movingDir = direction.x > 0 ? Direction.East : Direction.West;
-                        }
-                        else
-                        {
-                            // Vertical swipe
-                            movingHorizontally = false;
-                            canCheck = !Physics2D.Raycast(transform.position, direction.y > 0 ? Vector2.up : Vector2.down, 1.0f, obstacleMask);
-                            movingDir = direction.y > 0 ? Direction.North : Direction.South;
-                        }
+                            Vector2 touchEndPosition = touch.position;
+                            Vector2 direction = touchEndPosition - startTouchPosition;
 
-                        swipeRegistered = true; // Mark swipe as registered
-                    }
-                    break;
+                            if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+                            {
+                                // Horizontal swipe
+                                movingHorizontally = true;
+                                canCheck = !Physics2D.Raycast(transform.position, direction.x > 0 ? Vector2.right : Vector2.left, 1.0f, obstacleMask);
+                                movingDir = direction.x > 0 ? Direction.East : Direction.West;
+                            }
+                            else
+                            {
+                                // Vertical swipe
+                                movingHorizontally = false;
+                                canCheck = !Physics2D.Raycast(transform.position, direction.y > 0 ? Vector2.up : Vector2.down, 1.0f, obstacleMask);
+                                movingDir = direction.y > 0 ? Direction.North : Direction.South;
+                            }
+
+                            swipeRegistered = true; // Mark swipe as registered
+                        }
+                        break;
+                }
             }
-        }
 
-        // Apply constraints based on swipe direction
-        if (canCheck)
-        {
-            if (movingHorizontally)
+            // Apply constraints based on swipe direction
+            if (canCheck)
             {
-                rb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+                if (movingHorizontally)
+                {
+                    rb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+                }
+                else
+                {
+                    rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+                }
             }
             else
             {
-                rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+                // Free all constraints if movement is not allowed
+                rb.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation;
             }
         }
     }
 
     void FixedUpdate()
     {
-        if (canCheck)
+        if (canCheck && rb.velocity == Vector2.zero) // Only move if canCheck is true and velocity is zero
         {
             Vector2 moveDirection = Vector2.zero;
             switch (movingDir)
