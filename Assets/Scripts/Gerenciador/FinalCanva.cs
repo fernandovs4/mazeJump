@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class FinalCanva : MonoBehaviour
 {
-    public TextMeshProUGUI pointsText;
+    // public TextMeshProUGUI pointsText;
     public int currentLevel;
 
     public Button nextLevelButton;
@@ -16,22 +16,17 @@ public class FinalCanva : MonoBehaviour
     public GameObject[] starsImg;
 
 
-    public void Setup(int score, int stars, bool isVictory){
-        // gameObject.SetActive(true);
-        // pointsText.text = score.ToString() ;
-        // if (isVictory){
-        //     nextLevelButton.interactable = true;
-        // } else {
-        //     nextLevelButton.interactable = false;
-        // }
+    public void SetUp(int stars){
+        gameObject.SetActive(true);
 
-        // for (int i = 0; i < 3; i++){
-        //     if (i < stars){
-        //         starsImg[i].SetActive(true);
-        //     } else {
-        //         starsImg[i].SetActive(false);
-        //     }
-        // }
+
+        for (int i = 0; i < 3; i++){
+            if (i < stars){
+                starsImg[i].SetActive(true);
+            } else {
+                starsImg[i].SetActive(false);
+            }
+        }
     }
 
     public void MenuLevel(){
@@ -42,7 +37,7 @@ public class FinalCanva : MonoBehaviour
     }
 
 
-    public void RestartButton(){
+    public void RestartLevel(){
         SceneManager.LoadScene("Level " + currentLevel);
     }
 
