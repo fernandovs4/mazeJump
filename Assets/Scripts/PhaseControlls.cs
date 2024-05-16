@@ -6,4 +6,6 @@ public class PhaseControlls : MonoBehaviour
 {
     [SerializeField ] public float tempoAteACenouraEstarAtiva;
     [SerializeField ] public float tempoParaDesativarCenoura;
+    // fase atual
+    [SerializeField ] public int faseAtual;
 }
