@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/Scenes/fases/jogoFase2.unity
     guid: 2e42acc578d7e1d44a5dd30aa3e2446d
   - enabled: 1
-    path: Assets/Scenes/fases/jogoFase3.unity
+    path: Assets/Scenes/fases/jogoFase4.unity
     guid: 7db64811a4c009b49bca895c63067676
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 9a0592067ca42fd49bdd491ceffb8654, type: 2}

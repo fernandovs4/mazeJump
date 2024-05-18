@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] LayerMask obstacleMask;
     [SerializeField] bool movingHorizontally = false, canCheck = true;
     public float speed;
+   
     Rigidbody2D rb;
 
     private Vector2 startTouchPosition;
