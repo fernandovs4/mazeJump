@@ -27,6 +27,7 @@ public class FinalDoJogo : MonoBehaviour
             Debug.Log("Estrelas coletadas: " + currentStars);
             Debug.Log("Estrelas salvas: " + estrelasSalvas);
             Debug.Log("Fase atual: " + faseAtual);
+            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 
 
             // Se o número de estrelas coletadas for maior, salve o novo valor
@@ -39,6 +40,7 @@ public class FinalDoJogo : MonoBehaviour
             // verificar se é a ultima fase e aumentar o numero de fases liberadas
             if ( faseAtual == PlayerPrefs.GetInt("levelReached", 1) )
             {
+                Debug.Log("NIVEL AUMENTOU PRA A FASE: " + faseAtual);
                 PlayerPrefs.SetInt("levelReached", faseAtual + 1);
                 PlayerPrefs.Save();
             }
