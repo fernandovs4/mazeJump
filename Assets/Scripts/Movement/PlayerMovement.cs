@@ -110,4 +110,26 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = moveDirection;
         }
     }
+
+     void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("Player collided with wall.");
+        if (obstacleMask == (obstacleMask | (1 << collision.gameObject.layer)))
+        {
+            Debug.Log("Player collided with wall, vibration triggered.");
+            Handheld.Vibrate();
+            
+        }
+    }
+
+    void TriggerVibration()
+    {
+#if UNITY_ANDROID || UNITY_IOS
+        Handheld.Vibrate();
+#endif
+
+#if UNITY_IOS
+        iPhoneUtils.Vibrate();
+#endif
+    }
 }

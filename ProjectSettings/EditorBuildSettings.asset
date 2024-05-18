@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TestScene.unity
     guid: 3fc8acdd13e6c734bafef6554d6fdbcd
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Victory.unity
     guid: 3972100307595b8479df8d09efa1a53c
   - enabled: 1
@@ -28,7 +28,7 @@ EditorBuildSettings:
     guid: 2e42acc578d7e1d44a5dd30aa3e2446d
   - enabled: 1
     path: Assets/Scenes/fases/jogoFase4.unity
-    guid: 7db64811a4c009b49bca895c63067676
+    guid: 2e42acc578d7e1d44a5dd30aa3e2446d
   - enabled: 1
     path: Assets/Scenes/fases/jogoFase6.unity
     guid: 3628f506ad49fd240b92283eac4a2b46
@@ -37,4 +37,5 @@ EditorBuildSettings:
     guid: 026843576b9d7e24cbdf64f23c7db974
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 9a0592067ca42fd49bdd491ceffb8654, type: 2}
+    com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: 99c603bd4b1f46a43885945ceac09a44, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 2c793316d0dba2845a287ecdfa00e83f, type: 2}
