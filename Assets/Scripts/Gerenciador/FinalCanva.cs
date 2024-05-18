@@ -60,11 +60,12 @@ public class FinalCanva : MonoBehaviour
 
     public void NextLevel()
     {
-        SceneManager.LoadScene("Level " + (currentLevel + 1));
+        SceneManager.LoadScene("jogoFase" + (currentLevel + 1));
     }
 
     public void RestartLevel()
     {
-        SceneManager.LoadScene("Level " + currentLevel);
+        Debug.Log("Trying to Restarti level " + currentLevel);
+        SceneManager.LoadScene("jogoFase" + currentLevel);
     }
 }
