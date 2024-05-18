@@ -129,7 +129,7 @@ public class PlayerMovement : MonoBehaviour
 #endif
 
 #if UNITY_IOS
-        iPhoneUtils.Vibrate();
+        Handheld.Vibrate();
 #endif
     }
 }
