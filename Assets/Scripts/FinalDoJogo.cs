@@ -35,9 +35,8 @@ public class FinalDoJogo : MonoBehaviour
                 PlayerPrefs.Save();
             }
 
-            // Zera o número de estrelas coletadas para a próxima fase
-            PlayerPrefs.SetInt("CurrentStars", 0);
-            PlayerPrefs.Save();
+
+            
 
             // Direciona para a tela de fim de jogo
             SceneManager.LoadScene("Victory");
