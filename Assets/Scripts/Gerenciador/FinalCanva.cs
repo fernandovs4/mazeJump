@@ -29,9 +29,6 @@ public class FinalCanva : MonoBehaviour
         // Zera o número de estrelas coletadas para a próxima fase
         PlayerPrefs.SetInt("CurrentStars", 0);
         PlayerPrefs.Save();
-
-        Debug.Log("Current Stars: " + PlayerPrefs.GetInt("CurrentStars", 0));
-        Debug.Log("Setado pra 0 NOVAMENTEE!!!!!!");
     }
 
     public void SetUp(int stars)
@@ -43,12 +40,10 @@ public class FinalCanva : MonoBehaviour
             if (i < stars)
             {
                 starsImg[i].SetActive(true);
-                Debug.Log("Star " + (i + 1) + " set to active");
             }
             else
             {
                 starsImg[i].SetActive(false);
-                Debug.Log("Star " + (i + 1) + " set to inactive");
             }
         }
     }
@@ -60,6 +55,9 @@ public class FinalCanva : MonoBehaviour
 
     public void NextLevel()
     {
+        Debug.Log(" AAAAAAAAAAAA Trying to load level " + (currentLevel + 1));
+
+
         SceneManager.LoadScene("jogoFase" + (currentLevel + 1));
     }
 

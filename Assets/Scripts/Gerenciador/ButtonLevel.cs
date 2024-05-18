@@ -19,7 +19,7 @@ public class ButtonLevel : MonoBehaviour
 
     public void Awake()
     {
-        int levelReached = PlayerPrefs.GetInt("levelReached",6);
+        int levelReached = PlayerPrefs.GetInt("levelReached", PlayerPrefs.GetInt("levelReached", 1));
         int levelStars = PlayerPrefs.GetInt("Stars_Level_" + levelId, 0);
 
 
@@ -57,7 +57,7 @@ public class ButtonLevel : MonoBehaviour
 
     public void OpenLevel()
     {
-        string levelName = "Level " + levelId;
+        string levelName = "jogoFase" + levelId;
         SceneManager.LoadScene(levelName);
     }
 }

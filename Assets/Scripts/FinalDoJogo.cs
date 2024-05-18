@@ -10,6 +10,7 @@ public class FinalDoJogo : MonoBehaviour
     {
         phaseControlls = FindObjectOfType<PhaseControlls>();
         faseAtual = phaseControlls.faseAtual;
+        PlayerPrefs.SetInt("CurrentLevel", faseAtual);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -35,9 +36,12 @@ public class FinalDoJogo : MonoBehaviour
                 PlayerPrefs.Save();
             }
 
-
-            
-
+            // verificar se é a ultima fase e aumentar o numero de fases liberadas
+            if ( faseAtual == PlayerPrefs.GetInt("levelReached", 1) )
+            {
+                PlayerPrefs.SetInt("levelReached", faseAtual + 1);
+                PlayerPrefs.Save();
+            }
             // Direciona para a tela de fim de jogo
             SceneManager.LoadScene("Victory");
         }
