@@ -16,9 +16,17 @@ public class FinalCanva : MonoBehaviour
 
     private int currentStars;
 
+    // text 
+    public TextMeshProUGUI levelText;
+
     public void Start()
     {
+        // set text
+        
+
+
         currentLevel = PlayerPrefs.GetInt("CurrentLevel", 1);
+        levelText.text = "Nível " + currentLevel + "\nconcluído";
         currentStars = PlayerPrefs.GetInt("CurrentStars", 0);
         
         Debug.Log("Current Level: " + currentLevel);

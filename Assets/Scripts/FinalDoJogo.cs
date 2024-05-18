@@ -27,8 +27,6 @@ public class FinalDoJogo : MonoBehaviour
             Debug.Log("Estrelas coletadas: " + currentStars);
             Debug.Log("Estrelas salvas: " + estrelasSalvas);
             Debug.Log("Fase atual: " + faseAtual);
-            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-
 
             // Se o número de estrelas coletadas for maior, salve o novo valor
             if (currentStars > estrelasSalvas)
