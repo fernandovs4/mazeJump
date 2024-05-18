@@ -20,7 +20,7 @@ public class LevelMenu : MonoBehaviour
     }
 
     public void OpenLevel(int levelId){
-        string levelName = "Level " + levelId;
+        string levelName = "jogoFase" + levelId;
         SceneManager.LoadScene(levelName);
     }
 }
