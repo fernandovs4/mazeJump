@@ -24,21 +24,19 @@ public class FinalCanva : MonoBehaviour
 
     public void Start(){
         // set text
-        
         currentCoins = PlayerPrefs.GetInt("CurrentCoins", 0);
 
         pointsText.text = currentCoins.ToString();
 
-
         currentLevel = PlayerPrefs.GetInt("CurrentLevel", 1);
         levelText.text = "Nível " + currentLevel + "\nconcluído";
         currentStars = PlayerPrefs.GetInt("CurrentStars", 0);
-        
+
         Debug.Log("Current Level: " + currentLevel);
         Debug.Log("Current Stars: " + currentStars);
-        
+
         SetUp(currentStars);
-        
+
         // Zera o número de estrelas coletadas para a próxima fase
         PlayerPrefs.SetInt("CurrentStars", 0);
         PlayerPrefs.Save();
@@ -78,7 +76,22 @@ public class FinalCanva : MonoBehaviour
         SceneManager.LoadScene("jogoFase" + currentLevel);
     }
 
-    public void dubleCoins(){
+    public void DubleCoins()
+    {
+        AdsManager adsManager = FindObjectOfType<AdsManager>();
+        if (adsManager != null)
+        {
+            adsManager.ShowAd();
+        }
+        else
+        {
+            Debug.LogError("AdsManager not found!");
+        }
+    }
+
+
+    public void DubleCoinsReward()
+    {
         currentCoins *= 2;
         PlayerPrefs.SetInt("CurrentCoins", currentCoins);
         PlayerPrefs.Save();
@@ -93,6 +106,5 @@ public class FinalCanva : MonoBehaviour
         PlayerPrefs.SetInt("TotalCoins", totalCoins);
         PlayerPrefs.SetInt("CurrentCoins", 0);
         PlayerPrefs.Save();
-        
     }
 }

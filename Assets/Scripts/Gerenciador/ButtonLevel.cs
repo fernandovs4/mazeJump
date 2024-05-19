@@ -47,12 +47,10 @@ public class ButtonLevel : MonoBehaviour
             if (i < stars)
             {
                 starsImg[i].SetActive(true);
-                Debug.Log("Star " + (i + 1) + " set to active");
             }
             else
             {
                 starsImg[i].SetActive(false);
-                Debug.Log("Star " + (i + 1) + " set to inactive");
             }
         }
     }
