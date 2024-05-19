@@ -16,10 +16,16 @@ public class coin : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
-        {Destroy(gameObject); // Destroi a moeda imediatamente
+        {
+            Destroy(gameObject); // Destroi a moeda imediatamente
             Debug.Log("Player colidiu com a moeda!");
             audioSource.PlayOneShot(coinSound); // Reproduz o som sem interromper sons anteriores
             
+            // salva o número de moedas coletadas na fase
+            int currentCoins = PlayerPrefs.GetInt("CurrentCoins", 0);
+            currentCoins++;
+            PlayerPrefs.SetInt("CurrentCoins", currentCoins);
+            PlayerPrefs.Save();
         }
     }
 }

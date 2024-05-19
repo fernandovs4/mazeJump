@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class FinalCanva : MonoBehaviour
 {
-    // public TextMeshProUGUI pointsText;
+    public TextMeshProUGUI pointsText;
     public int currentLevel;
 
     public Button nextLevelButton;
@@ -15,14 +15,19 @@ public class FinalCanva : MonoBehaviour
     public GameObject[] starsImg;
 
     private int currentStars;
+    private int currentCoins;
+
+    public GameObject dubleCoinsButton;
 
     // text 
     public TextMeshProUGUI levelText;
 
-    public void Start()
-    {
+    public void Start(){
         // set text
         
+        currentCoins = PlayerPrefs.GetInt("CurrentCoins", 0);
+
+        pointsText.text = currentCoins.ToString();
 
 
         currentLevel = PlayerPrefs.GetInt("CurrentLevel", 1);
@@ -39,8 +44,7 @@ public class FinalCanva : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    public void SetUp(int stars)
-    {
+    public void SetUp(int stars){
         gameObject.SetActive(true);
 
         for (int i = 0; i < starsImg.Length; i++)
@@ -56,22 +60,39 @@ public class FinalCanva : MonoBehaviour
         }
     }
 
-    public void MenuLevel()
-    {
+    public void MenuLevel(){
+        updateCoins();
         SceneManager.LoadScene("LevelMenu");
     }
 
-    public void NextLevel()
-    {
+    public void NextLevel(){
         Debug.Log(" AAAAAAAAAAAA Trying to load level " + (currentLevel + 1));
 
-
+        updateCoins();
         SceneManager.LoadScene("jogoFase" + (currentLevel + 1));
     }
 
-    public void RestartLevel()
-    {
+    public void RestartLevel(){
         Debug.Log("Trying to Restarti level " + currentLevel);
+        updateCoins();
         SceneManager.LoadScene("jogoFase" + currentLevel);
+    }
+
+    public void dubleCoins(){
+        currentCoins *= 2;
+        PlayerPrefs.SetInt("CurrentCoins", currentCoins);
+        PlayerPrefs.Save();
+        pointsText.text = currentCoins.ToString();
+        dubleCoinsButton.SetActive(false);
+        dubleCoinsButton.GetComponent<Button>().interactable = false;
+    }
+
+    private void updateCoins(){
+        int totalCoins = PlayerPrefs.GetInt("TotalCoins", 0);
+        totalCoins += currentCoins;
+        PlayerPrefs.SetInt("TotalCoins", totalCoins);
+        PlayerPrefs.SetInt("CurrentCoins", 0);
+        PlayerPrefs.Save();
+        
     }
 }
