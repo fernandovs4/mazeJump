@@ -12,7 +12,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] LayerMask obstacleMask;
     [SerializeField] bool movingHorizontally = false, canCheck = true;
     public float speed;
-   
+    public float minSwipeDistance = 50f; // Distância mínima para considerar um arraste
+
     Rigidbody2D rb;
 
     private Vector2 startTouchPosition;
@@ -46,22 +47,25 @@ public class PlayerMovement : MonoBehaviour
                             Vector2 touchEndPosition = touch.position;
                             Vector2 direction = touchEndPosition - startTouchPosition;
 
-                            if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+                            if (direction.magnitude >= minSwipeDistance) // Verifique se a distância de arraste é suficiente
                             {
-                                // Horizontal swipe
-                                movingHorizontally = true;
-                                canCheck = !Physics2D.Raycast(transform.position, direction.x > 0 ? Vector2.right : Vector2.left, 1.0f, obstacleMask);
-                                movingDir = direction.x > 0 ? Direction.East : Direction.West;
-                            }
-                            else
-                            {
-                                // Vertical swipe
-                                movingHorizontally = false;
-                                canCheck = !Physics2D.Raycast(transform.position, direction.y > 0 ? Vector2.up : Vector2.down, 1.0f, obstacleMask);
-                                movingDir = direction.y > 0 ? Direction.North : Direction.South;
-                            }
+                                if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+                                {
+                                    // Horizontal swipe
+                                    movingHorizontally = true;
+                                    canCheck = !Physics2D.Raycast(transform.position, direction.x > 0 ? Vector2.right : Vector2.left, 1.0f, obstacleMask);
+                                    movingDir = direction.x > 0 ? Direction.East : Direction.West;
+                                }
+                                else
+                                {
+                                    // Vertical swipe
+                                    movingHorizontally = false;
+                                    canCheck = !Physics2D.Raycast(transform.position, direction.y > 0 ? Vector2.up : Vector2.down, 1.0f, obstacleMask);
+                                    movingDir = direction.y > 0 ? Direction.North : Direction.South;
+                                }
 
-                            swipeRegistered = true; // Mark swipe as registered
+                                swipeRegistered = true; // Mark swipe as registered
+                            }
                         }
                         break;
                 }
@@ -111,14 +115,13 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-     void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("Player collided with wall.");
         if (obstacleMask == (obstacleMask | (1 << collision.gameObject.layer)))
         {
             Debug.Log("Player collided with wall, vibration triggered.");
             Handheld.Vibrate();
-            
         }
     }
 
