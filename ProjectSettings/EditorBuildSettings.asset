@@ -21,19 +21,19 @@ EditorBuildSettings:
     path: Assets/Scenes/Fase1snapshot.unity
     guid: f940818f12e6c7849bff9086640a5112
   - enabled: 1
-    path: Assets/Scenes/fases/jogoFase1.unity
+    path: Assets/Scenes/fases/jogoFase4.unity
     guid: 05cc33436f3ccf943b27cb6ec320282e
   - enabled: 1
-    path: Assets/Scenes/fases/jogoFase4.unity
+    path: Assets/Scenes/fases/jogoFase7.unity
     guid: 2e42acc578d7e1d44a5dd30aa3e2446d
   - enabled: 1
-    path: Assets/Scenes/fases/jogoFase4.unity
+    path: Assets/Scenes/fases/jogoFase7.unity
     guid: 2e42acc578d7e1d44a5dd30aa3e2446d
   - enabled: 1
-    path: Assets/Scenes/fases/jogoFase6.unity
+    path: Assets/Scenes/fases/jogoFase9.unity
     guid: 3628f506ad49fd240b92283eac4a2b46
   - enabled: 1
-    path: Assets/Scenes/fases/jogoFase2.unity
+    path: Assets/Scenes/fases/jogoFase5.unity
     guid: 026843576b9d7e24cbdf64f23c7db974
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 9a0592067ca42fd49bdd491ceffb8654, type: 2}
