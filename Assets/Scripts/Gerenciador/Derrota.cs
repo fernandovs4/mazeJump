@@ -11,7 +11,7 @@ public class Derrota : MonoBehaviour
         PlayerPrefs.Save();
     }
     public void MenuLevel(){
-        SceneManager.LoadScene("LevelMenu");
+        SceneManager.LoadScene("LevelMenu_Scroll");
     }
 
 

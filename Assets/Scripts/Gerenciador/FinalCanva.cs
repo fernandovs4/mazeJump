@@ -60,14 +60,17 @@ public class FinalCanva : MonoBehaviour
 
     public void MenuLevel(){
         updateCoins();
-        SceneManager.LoadScene("LevelMenu");
+        SceneManager.LoadScene("LevelMenu_Scroll");
     }
 
     public void NextLevel(){
         Debug.Log(" AAAAAAAAAAAA Trying to load level " + (currentLevel + 1));
 
         updateCoins();
-        SceneManager.LoadScene("jogoFase" + (currentLevel + 1));
+        PlayerPrefs.SetInt("CurrentLevel", currentLevel + 1);
+        PlayerPrefs.Save();
+        SceneManager.LoadScene("jogoFase" + PlayerPrefs.GetInt("CurrentLevel", 1));
+
     }
 
     public void RestartLevel(){
