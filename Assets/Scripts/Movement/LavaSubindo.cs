@@ -10,4 +10,6 @@ public class LavaSubindo : MonoBehaviour
     {
         transform.Translate(Vector3.up * velocidade * Time.deltaTime);
     }
+
+    
 }
