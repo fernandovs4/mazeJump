@@ -278,15 +278,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 959231540149894257, guid: 70ee6109c92cee646a9502c4a0416a82, type: 3}
       propertyPath: m_Name
-      value: Final_de_fase (1)
+      value: Final_de_fase
       objectReference: {fileID: 0}
     - target: {fileID: 8374108535608833736, guid: 70ee6109c92cee646a9502c4a0416a82, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.484967
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 8374108535608833736, guid: 70ee6109c92cee646a9502c4a0416a82, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.306478
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 8374108535608833736, guid: 70ee6109c92cee646a9502c4a0416a82, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4650,7 +4650,7 @@ GameObject:
   - component: {fileID: 896060896}
   - component: {fileID: 896060895}
   m_Layer: 0
-  m_Name: Phase_controll
+  m_Name: PhaseControlls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4670,7 +4670,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tempoAteACenouraEstarAtiva: 1
   tempoParaDesativarCenoura: 1
-  faseAtual: 0
+  faseAtual: 2
 --- !u!4 &896060896
 Transform:
   m_ObjectHideFlags: 0
@@ -7602,11 +7602,8 @@ SceneRoots:
   - {fileID: 1098935823}
   - {fileID: 1229915313}
   - {fileID: 906412188}
-  - {fileID: 1185825945}
-  - {fileID: 228994604}
   - {fileID: 97375972}
   - {fileID: 964117947}
-  - {fileID: 1438944052}
   - {fileID: 295418887}
   - {fileID: 327756915}
   - {fileID: 1847300230}

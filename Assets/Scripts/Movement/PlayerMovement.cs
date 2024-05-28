@@ -12,15 +12,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] LayerMask obstacleMask;
     [SerializeField] bool movingHorizontally = false, canCheck = true;
     public float speed;
-    public float minSwipeDistance = 50f; // Distância mínima para considerar um arraste
 
     Rigidbody2D rb;
 
-    private Vector2 startTouchPosition;
-    private bool swipeRegistered = false;
+    private bool isMoving = false;
+    private Vector2 moveDirection = Vector2.zero;
 
     public Direction movingDir;
-    
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -28,90 +27,57 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (rb.velocity == Vector2.zero) // Only allow new movement if the player is not moving
+        Vector2 direction = Vector2.zero;
+
+        if (Input.GetKey(KeyCode.UpArrow))
         {
-            if (Input.touchCount > 0)
-            {
-                Touch touch = Input.GetTouch(0);
+            direction = Vector2.up;
+            movingDir = Direction.North;
+        }
+        else if (Input.GetKey(KeyCode.DownArrow))
+        {
+            direction = Vector2.down;
+            movingDir = Direction.South;
+        }
+        else if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            direction = Vector2.left;
+            movingDir = Direction.West;
+        }
+        else if (Input.GetKey(KeyCode.RightArrow))
+        {
+            direction = Vector2.right;
+            movingDir = Direction.East;
+        }
 
-                switch (touch.phase)
-                {
-                    case TouchPhase.Began:
-                        startTouchPosition = touch.position;
-                        swipeRegistered = false;
-                        break;
-
-                    case TouchPhase.Moved:
-                        if (!swipeRegistered) // Check if swipe direction is not yet registered
-                        {
-                            Vector2 touchEndPosition = touch.position;
-                            Vector2 direction = touchEndPosition - startTouchPosition;
-
-                            if (direction.magnitude >= minSwipeDistance) // Verifique se a distância de arraste é suficiente
-                            {
-                                if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
-                                {
-                                    // Horizontal swipe
-                                    movingHorizontally = true;
-                                    canCheck = !Physics2D.Raycast(transform.position, direction.x > 0 ? Vector2.right : Vector2.left, 1.0f, obstacleMask);
-                                    movingDir = direction.x > 0 ? Direction.East : Direction.West;
-                                }
-                                else
-                                {
-                                    // Vertical swipe
-                                    movingHorizontally = false;
-                                    canCheck = !Physics2D.Raycast(transform.position, direction.y > 0 ? Vector2.up : Vector2.down, 1.0f, obstacleMask);
-                                    movingDir = direction.y > 0 ? Direction.North : Direction.South;
-                                }
-
-                                swipeRegistered = true; // Mark swipe as registered
-                            }
-                        }
-                        break;
-                }
-            }
-
-            // Apply constraints based on swipe direction
+        if (direction != Vector2.zero)
+        {
             if (canCheck)
             {
-                if (movingHorizontally)
+                isMoving = true;
+                moveDirection = direction.normalized * speed * Time.deltaTime;
+
+                // Check for obstacles in the direction of movement
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 1.0f, obstacleMask);
+                if (hit.collider != null)
                 {
-                    rb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
-                }
-                else
-                {
-                    rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+                    isMoving = false;
+                    moveDirection = Vector2.zero;
                 }
             }
-            else
-            {
-                // Free all constraints if movement is not allowed
-                rb.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation;
-            }
+        }
+        else
+        {
+            isMoving = false;
+            moveDirection = Vector2.zero;
         }
     }
 
     void FixedUpdate()
     {
-        if (canCheck && rb.velocity == Vector2.zero) // Only move if canCheck is true and velocity is zero
+        if (isMoving)
         {
-            Vector2 moveDirection = Vector2.zero;
-            switch (movingDir)
-            {
-                case Direction.North:
-                    moveDirection = new Vector2(0, speed * Time.fixedDeltaTime);
-                    break;
-                case Direction.South:
-                    moveDirection = new Vector2(0, -speed * Time.fixedDeltaTime);
-                    break;
-                case Direction.East:
-                    moveDirection = new Vector2(speed * Time.fixedDeltaTime, 0);
-                    break;
-                case Direction.West:
-                    moveDirection = new Vector2(-speed * Time.fixedDeltaTime, 0);
-                    break;
-            }
-            rb.velocity = moveDirection;
+            rb.MovePosition(rb.position + moveDirection);
         }
     }
 
@@ -121,17 +87,13 @@ public class PlayerMovement : MonoBehaviour
         if (obstacleMask == (obstacleMask | (1 << collision.gameObject.layer)))
         {
             Debug.Log("Player collided with wall, vibration triggered.");
-            Handheld.Vibrate();
+            TriggerVibration();
         }
     }
 
     void TriggerVibration()
     {
 #if UNITY_ANDROID || UNITY_IOS
-        Handheld.Vibrate();
-#endif
-
-#if UNITY_IOS
         Handheld.Vibrate();
 #endif
     }
