@@ -10,7 +10,9 @@ public class FinalDoJogo : MonoBehaviour
     {
         phaseControlls = FindObjectOfType<PhaseControlls>();
         faseAtual = phaseControlls.faseAtual;
+        Debug.Log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Fase atual: " + faseAtual);
         PlayerPrefs.SetInt("CurrentLevel", faseAtual);
+        PlayerPrefs.Save();
     }
 
     void OnTriggerEnter2D(Collider2D other)
