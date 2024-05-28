@@ -100,15 +100,19 @@ public class PlayerMovement : MonoBehaviour
             {
                 case Direction.North:
                     moveDirection = new Vector2(0, speed * Time.fixedDeltaTime);
+                    transform.rotation = Quaternion.Euler(0, 0, 180); // Rotate 0 degrees
                     break;
                 case Direction.South:
                     moveDirection = new Vector2(0, -speed * Time.fixedDeltaTime);
+                    transform.rotation = Quaternion.Euler(0, 0, 0); // Rotate 180 degrees
                     break;
                 case Direction.East:
                     moveDirection = new Vector2(speed * Time.fixedDeltaTime, 0);
+                    transform.rotation = Quaternion.Euler(0, 0, 90); // Rotate -90 degrees
                     break;
                 case Direction.West:
                     moveDirection = new Vector2(-speed * Time.fixedDeltaTime, 0);
+                    transform.rotation = Quaternion.Euler(0, 0, -90); // Rotate 90 degrees
                     break;
             }
             rb.velocity = moveDirection;
