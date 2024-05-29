@@ -7,7 +7,7 @@ public class PlayerHealth : MonoBehaviour
 {
 
     public bool escudoAtivo = false;
-    public int qtdEscudo = 3;
+    public int qtdEscudo;
     public float escudoDuracao = 5f;
     public float escudoCooldown = 10f;
 
@@ -37,6 +37,7 @@ public class PlayerHealth : MonoBehaviour
         escudo = transform.Find("Escudo").gameObject;
         escudo.SetActive(false);
 
+        qtdEscudo = PlayerPrefs.GetInt("TotalOvos", 0);
 
         player = GameObject.FindWithTag("Player");
     }
@@ -118,6 +119,8 @@ public class PlayerHealth : MonoBehaviour
     IEnumerator DeathCoroutine(){
         yield return new WaitForSeconds(tempoAteMorrer);
         Destroy(player);
+        PlayerPrefs.SetInt("TotalOvos", qtdEscudo);
+        PlayerPrefs.Save();
         // Adicione aqui o que deve acontecer quando o jogador morre
         SceneManager.LoadScene("Derrota");
     }
