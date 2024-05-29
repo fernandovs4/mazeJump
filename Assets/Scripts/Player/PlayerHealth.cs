@@ -66,6 +66,7 @@ public class PlayerHealth : MonoBehaviour
     }
 
     public void PlayerHit(){
+        
         if(escudoAtivo){
             escudoAtivo = false;
             podeUsarEscudo = false;

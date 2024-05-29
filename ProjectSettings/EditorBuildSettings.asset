@@ -24,13 +24,13 @@ EditorBuildSettings:
     path: Assets/Scenes/fases/jogoFase6.unity
     guid: 05cc33436f3ccf943b27cb6ec320282e
   - enabled: 1
-    path: Assets/Scenes/fases/jogoFase12.unity
+    path: Assets/Scenes/fases/jogoFase9.unity
     guid: 2e42acc578d7e1d44a5dd30aa3e2446d
   - enabled: 1
-    path: Assets/Scenes/fases/jogoFase12.unity
+    path: Assets/Scenes/fases/jogoFase9.unity
     guid: 2e42acc578d7e1d44a5dd30aa3e2446d
   - enabled: 1
-    path: Assets/Scenes/fases/jogoFase14.unity
+    path: Assets/Scenes/fases/jogoFase11.unity
     guid: 3628f506ad49fd240b92283eac4a2b46
   - enabled: 1
     path: Assets/Scenes/fases/jogoFase3.unity
