@@ -4613,7 +4613,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tempoAteACenouraEstarAtiva: 1
   tempoParaDesativarCenoura: 1
-  faseAtual: 0
+  faseAtual: 3
 --- !u!4 &896060896
 Transform:
   m_ObjectHideFlags: 0

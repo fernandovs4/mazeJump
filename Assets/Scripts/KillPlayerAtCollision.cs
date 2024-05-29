@@ -15,4 +15,10 @@ public class KillPlayerAtCollision : MonoBehaviour
             other.gameObject.GetComponent<PlayerHealth>().PlayerHit();
         }
     }
+
+    private void OnTriggerStay2D(Collider2D other) {
+        if (other.gameObject.tag == "Player") {
+            other.gameObject.GetComponent<PlayerHealth>().PlayerHit();
+        }
+    }
 }
