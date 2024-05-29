@@ -345,6 +345,8 @@ MonoBehaviour:
   escudoCooldown: 10
   tempoAteMorrer: 1
   podeUsarEscudo: 1
+  isInvulnerable: 0
+  invulnerabilityTime: 1
   doubleClickTime: 0.5
 --- !u!1 &5508256001594010731
 GameObject:
@@ -357,7 +359,7 @@ GameObject:
   - component: {fileID: 2821670233841709383}
   - component: {fileID: 9212020392531582936}
   m_Layer: 0
-  m_Name: pixil-frame-0 (4)
+  m_Name: Escudo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
