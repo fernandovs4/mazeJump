@@ -12,14 +12,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] LayerMask obstacleMask;
     [SerializeField] bool movingHorizontally = false, canCheck = true;
     public float speed;
+    public float minSwipeDistance = 50f; // Distância mínima para considerar um arraste
 
     Rigidbody2D rb;
 
-    private bool isMoving = false;
-    private Vector2 moveDirection = Vector2.zero;
+    private Vector2 startTouchPosition;
+    private bool swipeRegistered = false;
 
     public Direction movingDir;
-
+    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -27,55 +28,72 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        Vector2 direction = Vector2.zero;
-
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (rb.velocity == Vector2.zero) // Only allow new movement if the player is not moving
         {
-            direction = Vector2.up;
-            movingDir = Direction.North;
-        }
-        else if (Input.GetKey(KeyCode.DownArrow))
-        {
-            direction = Vector2.down;
-            movingDir = Direction.South;
-        }
-        else if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            direction = Vector2.left;
-            movingDir = Direction.West;
-        }
-        else if (Input.GetKey(KeyCode.RightArrow))
-        {
-            direction = Vector2.right;
-            movingDir = Direction.East;
-        }
-
-        if (direction != Vector2.zero)
-        {
-            if (canCheck)
+            if (Input.touchCount > 0)
             {
-                isMoving = true;
-                moveDirection = direction.normalized * speed * Time.deltaTime;
+                Touch touch = Input.GetTouch(0);
 
-                // Check for obstacles in the direction of movement
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 1.0f, obstacleMask);
-                if (hit.collider != null)
+                switch (touch.phase)
                 {
-                    isMoving = false;
-                    moveDirection = Vector2.zero;
+                    case TouchPhase.Began:
+                        startTouchPosition = touch.position;
+                        swipeRegistered = false;
+                        break;
+
+                    case TouchPhase.Moved:
+                        if (!swipeRegistered) // Check if swipe direction is not yet registered
+                        {
+                            Vector2 touchEndPosition = touch.position;
+                            Vector2 direction = touchEndPosition - startTouchPosition;
+
+                            if (direction.magnitude >= minSwipeDistance) // Verifique se a distância de arraste é suficiente
+                            {
+                                if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+                                {
+                                    // Horizontal swipe
+                                    movingHorizontally = true;
+                                    canCheck = !Physics2D.Raycast(transform.position, direction.x > 0 ? Vector2.right : Vector2.left, 1.0f, obstacleMask);
+                                    movingDir = direction.x > 0 ? Direction.East : Direction.West;
+                                }
+                                else
+                                {
+                                    // Vertical swipe
+                                    movingHorizontally = false;
+                                    canCheck = !Physics2D.Raycast(transform.position, direction.y > 0 ? Vector2.up : Vector2.down, 1.0f, obstacleMask);
+                                    movingDir = direction.y > 0 ? Direction.North : Direction.South;
+                                }
+
+                                swipeRegistered = true; // Mark swipe as registered
+                            }
+                        }
+                        break;
                 }
             }
-        }
-        else
-        {
-            isMoving = false;
-            moveDirection = Vector2.zero;
+
+            // Apply constraints based on swipe direction
+            if (canCheck)
+            {
+                if (movingHorizontally)
+                {
+                    rb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+                }
+                else
+                {
+                    rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+                }
+            }
+            else
+            {
+                // Free all constraints if movement is not allowed
+                rb.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation;
+            }
         }
     }
 
     void FixedUpdate()
     {
-        if (isMoving)
+        if (canCheck && rb.velocity == Vector2.zero) // Only move if canCheck is true and velocity is zero
         {
             Vector2 moveDirection = Vector2.zero;
             switch (movingDir)
@@ -107,13 +125,17 @@ public class PlayerMovement : MonoBehaviour
         if (obstacleMask == (obstacleMask | (1 << collision.gameObject.layer)))
         {
             Debug.Log("Player collided with wall, vibration triggered.");
-            TriggerVibration();
+            Handheld.Vibrate();
         }
     }
 
     void TriggerVibration()
     {
 #if UNITY_ANDROID || UNITY_IOS
+        Handheld.Vibrate();
+#endif
+
+#if UNITY_IOS
         Handheld.Vibrate();
 #endif
     }
