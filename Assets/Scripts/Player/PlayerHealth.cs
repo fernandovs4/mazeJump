@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
-
     public bool escudoAtivo = false;
     public int qtdEscudo;
     public float escudoDuracao = 5f;
@@ -15,23 +14,20 @@ public class PlayerHealth : MonoBehaviour
     public bool podeUsarEscudo = true;
 
     public bool isInvulnerable = false;
-
     public float invulnerabilityTime = 1f;
 
-    private GameObject player;
+    public AudioClip shieldSound; // Referência para o áudio do escudo
+    private AudioSource audioSource; // Componente de áudio
 
+    private GameObject player;
     private GameObject escudo;
 
-    
-    // Tempo permitido entre cliques para ser considerado um clique duplo
-    public float doubleClickTime = 0.15f;
+    public float doubleClickTime = 0.15f; // Tempo permitido entre cliques para ser considerado um clique duplo
     private float lastClickTime = 0f;
-
-    public float maxClickDistance = 15f; // Maximum distance between two clicks to recognize as a double click
+    public float maxClickDistance = 15f; // Distância máxima entre dois cliques para reconhecer como um clique duplo
 
     private Vector2 lastClickPosition;
 
-    // Start is called before the first frame update
     void Start()
     {
         escudo = transform.Find("Escudo").gameObject;
@@ -40,11 +36,15 @@ public class PlayerHealth : MonoBehaviour
         qtdEscudo = PlayerPrefs.GetInt("TotalOvos", 0);
 
         player = GameObject.FindWithTag("Player");
+        audioSource = GetComponent<AudioSource>(); // Obtém o componente AudioSource do mesmo GameObject
+        if (audioSource == null)
+        {
+            Debug.LogError("AudioSource component is missing from the player object.");
+        }
     }
 
-
     void Update()
-{
+    {
         // Detecta toque na tela
         if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended)
         {
@@ -65,7 +65,6 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    // Função chamada no clique duplo
     void OnDoubleClick()
     {
         Debug.Log("Double click detected!");
@@ -73,12 +72,15 @@ public class PlayerHealth : MonoBehaviour
         {
             podeUsarEscudo = false;
             qtdEscudo--;
+            PlayerPrefs.SetInt("TotalOvos", qtdEscudo);
+            PlayerPrefs.Save();
+            PlayShieldSound(); // Toca o som do escudo
             StartCoroutine(ShieldON());
         }
-        // Adicione aqui o que deve acontecer quando o clique duplo é detectado
     }
 
-    private IEnumerator ShieldON(){
+    private IEnumerator ShieldON()
+    {
         escudoAtivo = true;
         escudo.SetActive(true);
 
@@ -89,39 +91,58 @@ public class PlayerHealth : MonoBehaviour
         StartCoroutine(ShieldCooldown());
     }
 
-    public void PlayerHit(){
-        
-        if(escudoAtivo){
+    public void PlayerHit()
+    {
+        if (escudoAtivo)
+        {
             escudoAtivo = false;
             escudo.SetActive(false);
             StartCoroutine(Invulnerability());
             podeUsarEscudo = false;
             StartCoroutine(ShieldCooldown());
-        }else{
-            if(isInvulnerable){
+        }
+        else
+        {
+            if (isInvulnerable)
+            {
                 return;
             }
             StartCoroutine(DeathCoroutine());
         }
     }
 
-    IEnumerator Invulnerability(){
+    IEnumerator Invulnerability()
+    {
         isInvulnerable = true;
         yield return new WaitForSeconds(invulnerabilityTime);
         isInvulnerable = false;
     }
 
-    IEnumerator ShieldCooldown(){
+    IEnumerator ShieldCooldown()
+    {
         yield return new WaitForSeconds(escudoCooldown);
         podeUsarEscudo = true;
     }
 
-    IEnumerator DeathCoroutine(){
+    IEnumerator DeathCoroutine()
+    {
         yield return new WaitForSeconds(tempoAteMorrer);
         Destroy(player);
-        PlayerPrefs.SetInt("TotalOvos", qtdEscudo);
-        PlayerPrefs.Save();
-        // Adicione aqui o que deve acontecer quando o jogador morre
+
         SceneManager.LoadScene("Derrota");
+    }
+
+    void PlayShieldSound()
+    {
+        if (shieldSound != null && audioSource != null)
+        {
+            Debug.Log("Playing shield sound.");
+
+            audioSource.PlayOneShot(shieldSound);
+        }
+        else
+        {
+            Debug.LogError("Shield sound or audio source is not set.");
+        }
     }
 }

@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     public float minSwipeDistance = 50f; // Distância mínima para considerar um arraste
 
+    public AudioClip swipeSound; // Referência para o áudio do swipe
+    private AudioSource audioSource; // Componente de áudio
+
     Rigidbody2D rb;
 
     private Vector2 startTouchPosition;
@@ -24,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>(); // Obtém o componente AudioSource
     }
 
     void Update()
@@ -65,6 +69,8 @@ public class PlayerMovement : MonoBehaviour
                                 }
 
                                 swipeRegistered = true; // Mark swipe as registered
+                                Debug.Log("Swipe registered. Playing swipe sound.");
+                                PlaySwipeSound(); // Toca o som do swipe
                             }
                         }
                         break;
@@ -138,5 +144,18 @@ public class PlayerMovement : MonoBehaviour
 #if UNITY_IOS
         Handheld.Vibrate();
 #endif
+    }
+
+    void PlaySwipeSound()
+    {
+        if (swipeSound != null && audioSource != null)
+        {
+            Debug.Log("Playing swipe sound.");
+            audioSource.PlayOneShot(swipeSound);
+        }
+        else
+        {
+            Debug.Log("Swipe sound or audio source is not set.");
+        }
     }
 }

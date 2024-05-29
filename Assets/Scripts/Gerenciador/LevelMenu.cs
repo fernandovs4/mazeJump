@@ -53,6 +53,7 @@ public class LevelMenu : MonoBehaviour
             PlayerPrefs.SetInt("TotalCoins", coins);
             PlayerPrefs.Save();
             textOvos.text = totalOvos.ToString();
+            textCoins.text = CoinsinText(coins.ToString());
         } else {
             dinheiroSuficiente.SetActive(true);
         }

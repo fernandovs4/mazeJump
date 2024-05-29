@@ -7,7 +7,7 @@ public class Projectile : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
         
         if (other.collider.tag == "Player") {
-            Destroy(other.gameObject);
+            other.gameObject.GetComponent<PlayerHealth>().PlayerHit();
             Destroy(gameObject);
         }
 

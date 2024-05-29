@@ -34,7 +34,7 @@ public class CenouraController : MonoBehaviour
 
     private void Update() {
         if (cenouraEstaAtiva && playerInRange){
-            Destroy(player);
+            player.GetComponent<PlayerHealth>().PlayerHit();
         }
     }
 
