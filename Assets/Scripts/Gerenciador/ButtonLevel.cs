@@ -57,7 +57,7 @@ public class ButtonLevel : MonoBehaviour
 
     public void OpenLevel()
     {
-        string levelName = "jogoFase" + levelId;
+        string levelName = "jogoFase" + (levelId-1);
         SceneManager.LoadScene(levelName);
     }
 }
