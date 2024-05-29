@@ -24,9 +24,12 @@ public class PlayerHealth : MonoBehaviour
 
     
     // Tempo permitido entre cliques para ser considerado um clique duplo
-    public float doubleClickTime = 0.5f;
-    private float lastClickTime;
+    public float doubleClickTime = 0.15f;
+    private float lastClickTime = 0f;
 
+    public float maxClickDistance = 15f; // Maximum distance between two clicks to recognize as a double click
+
+    private Vector2 lastClickPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -40,18 +43,24 @@ public class PlayerHealth : MonoBehaviour
 
 
     void Update()
-    {
+{
         // Detecta toque na tela
         if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended)
         {
+            Vector2 currentClickPosition = Input.GetTouch(0).position;
             float timeSinceLastClick = Time.time - lastClickTime;
 
             if (timeSinceLastClick <= doubleClickTime)
             {
-                OnDoubleClick();
+                float distance = Vector2.Distance(currentClickPosition, lastClickPosition);
+                if (distance <= maxClickDistance)
+                {
+                    OnDoubleClick();
+                }
             }
 
             lastClickTime = Time.time;
+            lastClickPosition = currentClickPosition;
         }
     }
 

@@ -68,19 +68,16 @@ public class FinalCanva : MonoBehaviour
     public void NextLevel()
     {
         Debug.Log("AAAAAAAAAAA Trying to load level " + (currentLevel + 1));
-
         updateCoins();
-        PlayerPrefs.SetInt("CurrentLevel", currentLevel + 1);
-        PlayerPrefs.Save();
-        SceneManager.LoadScene("jogoFase" + PlayerPrefs.GetInt("CurrentLevel", 1));
+        SceneManager.LoadScene("jogoFase" + (currentLevel));
 
     }
 
     public void RestartLevel()
     {
-        Debug.Log("Trying to Restart level " + currentLevel);
+        Debug.Log("Trying to Restart level " + (currentLevel-1));
         updateCoins();
-        SceneManager.LoadScene("jogoFase" + currentLevel);
+        SceneManager.LoadScene("jogoFase" + (currentLevel-1));
     }
 
     public void DubleCoins()
