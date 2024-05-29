@@ -62,6 +62,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/fases/jogoFase12.unity
     guid: 8ef2d902c0c5bd842a4e55548db0b4bd
+  - enabled: 1
+    path: Assets/Scenes/Derrota.unity
+    guid: e0502babbb1866e4283ee7251af2d6c1
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 9a0592067ca42fd49bdd491ceffb8654, type: 2}
     com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: 99c603bd4b1f46a43885945ceac09a44, type: 2}

@@ -349,6 +349,7 @@ MonoBehaviour:
   podeUsarEscudo: 1
   isInvulnerable: 0
   invulnerabilityTime: 1
+  shieldSound: {fileID: 8300000, guid: 1459ed3322d553a4daaa275dcf248d3d, type: 3}
   doubleClickTime: 0.5
   maxClickDistance: 15
 --- !u!82 &8092795835878802987

@@ -732,7 +732,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -3.100006, y: -1.300003}
+  m_AnchoredPosition: {x: -3.0999756, y: -1.300003}
   m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &63520180
@@ -1132,7 +1132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373b285788b5bac4aa5c6d03078c1ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelId: 0
+  levelId: 1
   desbloqueado: {fileID: 919753761}
   bloqueado: {fileID: 1373800627}
   levelText: {fileID: 1352081625}
@@ -2562,7 +2562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373b285788b5bac4aa5c6d03078c1ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelId: 10
+  levelId: 11
   desbloqueado: {fileID: 1818894929}
   bloqueado: {fileID: 1055870154}
   levelText: {fileID: 945955473}
@@ -4455,7 +4455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373b285788b5bac4aa5c6d03078c1ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelId: 1
+  levelId: 2
   desbloqueado: {fileID: 2131080078}
   bloqueado: {fileID: 1423048201}
   levelText: {fileID: 32050351}
@@ -4999,7 +4999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373b285788b5bac4aa5c6d03078c1ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelId: 2
+  levelId: 3
   desbloqueado: {fileID: 77809420}
   bloqueado: {fileID: 1703127146}
   levelText: {fileID: 412761772}
@@ -6135,7 +6135,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0.008, y: 11.979, z: -180.036}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -1.3179016, y: 4.0183}
+  m_AnchoredPosition: {x: -1.3179321, y: 4.0183}
   m_SizeDelta: {x: -568.6825, y: 86.3038}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &613291942
@@ -6863,7 +6863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373b285788b5bac4aa5c6d03078c1ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelId: 5
+  levelId: 6
   desbloqueado: {fileID: 1216763005}
   bloqueado: {fileID: 849527960}
   levelText: {fileID: 925046802}
@@ -6948,7 +6948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373b285788b5bac4aa5c6d03078c1ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelId: 6
+  levelId: 7
   desbloqueado: {fileID: 1682791840}
   bloqueado: {fileID: 207534902}
   levelText: {fileID: 1721742093}
@@ -7438,7 +7438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373b285788b5bac4aa5c6d03078c1ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelId: 3
+  levelId: 4
   desbloqueado: {fileID: 1559673419}
   bloqueado: {fileID: 855935189}
   levelText: {fileID: 884950242}
@@ -8718,7 +8718,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373b285788b5bac4aa5c6d03078c1ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelId: 11
+  levelId: 12
   desbloqueado: {fileID: 713164410}
   bloqueado: {fileID: 1209412943}
   levelText: {fileID: 1294359041}
@@ -11386,6 +11386,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1087444541}
   m_CullTransparentMesh: 1
+--- !u!1 &1111928527
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1111928529}
+  - component: {fileID: 1111928528}
+  m_Layer: 0
+  m_Name: Ads
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1111928528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111928527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48170eb4a4ba5b640aed89615c86be39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  androidGameId: 5621301
+  iosGameId: 5621300
+  adUnitIdAndroid: Rewarded_Android
+  adUnitIdIos: Rewarded_iOS
+  testMode: 1
+--- !u!4 &1111928529
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111928527}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -166.70375, y: 617.6961, z: -5.376711}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1129736000
 GameObject:
   m_ObjectHideFlags: 0
@@ -18507,7 +18556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373b285788b5bac4aa5c6d03078c1ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelId: 9
+  levelId: 10
   desbloqueado: {fileID: 478874945}
   bloqueado: {fileID: 1264614017}
   levelText: {fileID: 753116761}
@@ -18667,7 +18716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373b285788b5bac4aa5c6d03078c1ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelId: 4
+  levelId: 5
   desbloqueado: {fileID: 87054983}
   bloqueado: {fileID: 160614357}
   levelText: {fileID: 1567629736}
@@ -18895,7 +18944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373b285788b5bac4aa5c6d03078c1ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelId: 7
+  levelId: 8
   desbloqueado: {fileID: 1779964405}
   bloqueado: {fileID: 2126020417}
   levelText: {fileID: 593209445}
@@ -20291,7 +20340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373b285788b5bac4aa5c6d03078c1ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelId: 8
+  levelId: 9
   desbloqueado: {fileID: 1710925246}
   bloqueado: {fileID: 314510858}
   levelText: {fileID: 1975431311}
@@ -20652,3 +20701,4 @@ SceneRoots:
   - {fileID: 1148042824}
   - {fileID: 88092771}
   - {fileID: 2010130317}
+  - {fileID: 1111928529}
