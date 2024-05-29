@@ -345,7 +345,7 @@ MonoBehaviour:
   qtdEscudo: 3
   escudoDuracao: 5
   escudoCooldown: 10
-  tempoAteMorrer: 1
+  tempoAteMorrer: 0.1
   podeUsarEscudo: 1
   isInvulnerable: 0
   invulnerabilityTime: 1
