@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -108,5 +109,7 @@ public class PlayerHealth : MonoBehaviour
     IEnumerator DeathCoroutine(){
         yield return new WaitForSeconds(tempoAteMorrer);
         Destroy(player);
+        // Adicione aqui o que deve acontecer quando o jogador morre
+        SceneManager.LoadScene("Derrota");
     }
 }

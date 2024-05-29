@@ -449,15 +449,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 959231540149894257, guid: 70ee6109c92cee646a9502c4a0416a82, type: 3}
       propertyPath: m_Name
-      value: Final_de_fase (2)
+      value: Final_de_fase
       objectReference: {fileID: 0}
     - target: {fileID: 8374108535608833736, guid: 70ee6109c92cee646a9502c4a0416a82, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.46
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 8374108535608833736, guid: 70ee6109c92cee646a9502c4a0416a82, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.37
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 8374108535608833736, guid: 70ee6109c92cee646a9502c4a0416a82, type: 3}
       propertyPath: m_LocalPosition.z
@@ -491,10 +491,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8530033331478838172, guid: 70ee6109c92cee646a9502c4a0416a82, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8530033331478838172, guid: 70ee6109c92cee646a9502c4a0416a82, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 959231540149894257, guid: 70ee6109c92cee646a9502c4a0416a82, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2129411772}
   m_SourcePrefab: {fileID: 100100000, guid: 70ee6109c92cee646a9502c4a0416a82, type: 3}
 --- !u!1001 &299630737
 PrefabInstance:
@@ -4593,7 +4601,7 @@ GameObject:
   - component: {fileID: 896060896}
   - component: {fileID: 896060895}
   m_Layer: 0
-  m_Name: Phase_controll
+  m_Name: PhaseControlls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -22,11 +22,11 @@ public class FinalCanva : MonoBehaviour
     // text 
     public TextMeshProUGUI levelText;
 
-    public void Start(){
+    public void Start()
+    {
         // set text
         currentCoins = PlayerPrefs.GetInt("CurrentCoins", 0);
-
-        pointsText.text = currentCoins.ToString();
+        StartCoroutine(AnimatePointsText(currentCoins));
 
         currentLevel = PlayerPrefs.GetInt("CurrentLevel", 1);
         levelText.text = "Nível " + currentLevel + "\nconcluído";
@@ -42,7 +42,8 @@ public class FinalCanva : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    public void SetUp(int stars){
+    public void SetUp(int stars)
+    {
         gameObject.SetActive(true);
 
         for (int i = 0; i < starsImg.Length; i++)
@@ -58,20 +59,26 @@ public class FinalCanva : MonoBehaviour
         }
     }
 
-    public void MenuLevel(){
+    public void MenuLevel()
+    {
         updateCoins();
-        SceneManager.LoadScene("LevelMenu");
+        SceneManager.LoadScene("LevelMenu_Scroll");
     }
 
-    public void NextLevel(){
-        Debug.Log(" AAAAAAAAAAAA Trying to load level " + (currentLevel + 1));
+    public void NextLevel()
+    {
+        Debug.Log("AAAAAAAAAAA Trying to load level " + (currentLevel + 1));
 
         updateCoins();
-        SceneManager.LoadScene("jogoFase" + (currentLevel + 1));
+        PlayerPrefs.SetInt("CurrentLevel", currentLevel + 1);
+        PlayerPrefs.Save();
+        SceneManager.LoadScene("jogoFase" + PlayerPrefs.GetInt("CurrentLevel", 1));
+
     }
 
-    public void RestartLevel(){
-        Debug.Log("Trying to Restarti level " + currentLevel);
+    public void RestartLevel()
+    {
+        Debug.Log("Trying to Restart level " + currentLevel);
         updateCoins();
         SceneManager.LoadScene("jogoFase" + currentLevel);
     }
@@ -95,16 +102,29 @@ public class FinalCanva : MonoBehaviour
         currentCoins *= 2;
         PlayerPrefs.SetInt("CurrentCoins", currentCoins);
         PlayerPrefs.Save();
-        pointsText.text = currentCoins.ToString();
+        StartCoroutine(AnimatePointsText(currentCoins));
         dubleCoinsButton.SetActive(false);
         dubleCoinsButton.GetComponent<Button>().interactable = false;
     }
 
-    private void updateCoins(){
+    private void updateCoins()
+    {
         int totalCoins = PlayerPrefs.GetInt("TotalCoins", 0);
         totalCoins += currentCoins;
         PlayerPrefs.SetInt("TotalCoins", totalCoins);
         PlayerPrefs.SetInt("CurrentCoins", 0);
         PlayerPrefs.Save();
+    }
+
+    private IEnumerator AnimatePointsText(int targetPoints)
+    {
+        int currentPoints = 0;
+        pointsText.text = "0";
+        while (currentPoints < targetPoints)
+        {
+            currentPoints += Mathf.Min(10, targetPoints - currentPoints); // Incrementa de forma mais rápida no início
+            pointsText.text = currentPoints.ToString();
+            yield return new WaitForSeconds(0.05f); // Ajuste este valor para controlar a velocidade da animação
+        }
     }
 }
