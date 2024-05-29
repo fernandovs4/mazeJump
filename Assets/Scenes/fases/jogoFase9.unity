@@ -456,6 +456,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6620884556854190309, guid: d3e9d9ef3e0e5ec42b272b2525796a48, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6955794188126466686, guid: d3e9d9ef3e0e5ec42b272b2525796a48, type: 3}
       propertyPath: m_Name
       value: Shooter
@@ -14070,6 +14074,10 @@ PrefabInstance:
     - target: {fileID: 1655352528504904306, guid: d3e9d9ef3e0e5ec42b272b2525796a48, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6620884556854190309, guid: d3e9d9ef3e0e5ec42b272b2525796a48, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6955794188126466686, guid: d3e9d9ef3e0e5ec42b272b2525796a48, type: 3}
       propertyPath: m_Name
