@@ -1165,6 +1165,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4551699292669627378, guid: 979f4b89cbdbfcc458e267eaeac3e945, type: 3}
+      propertyPath: speed
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8737692900168405723, guid: 979f4b89cbdbfcc458e267eaeac3e945, type: 3}
       propertyPath: m_Name
       value: Cobra (1)
@@ -12006,7 +12010,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2378707842783827747, guid: 9b25261279e078c45885bb3471f4ac6c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 39.50202
+      value: 41.50202
       objectReference: {fileID: 0}
     - target: {fileID: 2378707842783827747, guid: 9b25261279e078c45885bb3471f4ac6c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -13622,7 +13626,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7345317102836457298, guid: 7ea2f578caef67546a0117e51716bbea, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 37.01054
+      value: 42.01054
       objectReference: {fileID: 0}
     - target: {fileID: 7345317102836457298, guid: 7ea2f578caef67546a0117e51716bbea, type: 3}
       propertyPath: m_LocalPosition.y
