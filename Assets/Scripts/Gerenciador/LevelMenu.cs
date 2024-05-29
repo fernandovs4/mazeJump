@@ -9,13 +9,24 @@ public class LevelMenu : MonoBehaviour
 {
 
     public TextMeshProUGUI textCoins;
+    public TextMeshProUGUI textOvos;
+
     public GameObject canvasShop;
+
+    public GameObject dinheiroSuficiente;
+
+    public GameObject ovosButton;
+
+    private int totalOvos;
+    private int coins;
 
 
     public void Awake(){
+        totalOvos = PlayerPrefs.GetInt("TotalOvos", 0);
+        textOvos.text = totalOvos.ToString();
 
-        // string coins = PlayerPrefs.GetInt("TotalCoins", 0).ToString();
-        // textCoins.text = CoinsinText(coins);
+        coins = PlayerPrefs.GetInt("TotalCoins", 0);
+        textCoins.text = CoinsinText(coins.ToString());
     }
 
     public void OpenLevel(int levelId){
@@ -25,6 +36,26 @@ public class LevelMenu : MonoBehaviour
 
     public void OpenShop(){
         canvasShop.SetActive(true);
+        if (coins >= 100) {
+            ovosButton.SetActive(true);
+            dinheiroSuficiente.SetActive(false);
+        } else {
+            ovosButton.SetActive(false);
+            dinheiroSuficiente.SetActive(true);
+        }
+    }
+
+    public void BuyOvos(){
+        if (coins >= 100) {
+            coins -= 100;
+            totalOvos += 1;
+            PlayerPrefs.SetInt("TotalOvos", totalOvos);
+            PlayerPrefs.SetInt("TotalCoins", coins);
+            PlayerPrefs.Save();
+            textOvos.text = totalOvos.ToString();
+        } else {
+            dinheiroSuficiente.SetActive(true);
+        }
     }
 
     public void CloseShop(){
