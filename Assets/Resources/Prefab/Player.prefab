@@ -158,6 +158,7 @@ GameObject:
   - component: {fileID: 1986935676560767255}
   - component: {fileID: 1683449927746152511}
   - component: {fileID: 4610599747715849763}
+  - component: {fileID: 1425654861055031269}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -325,3 +326,22 @@ MonoBehaviour:
   speed: 3000
   minSwipeDistance: 50
   movingDir: 0
+--- !u!114 &1425654861055031269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3825287133911248967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ae29cd688b7efd4884e888a5deee111, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  escudoAtivo: 0
+  qtdEscudo: 3
+  escudoDuracao: 5
+  escudoCooldown: 10
+  tempoAteMorrer: 0.5
+  podeUsarEscudo: 1
+  doubleClickTime: 0.5
