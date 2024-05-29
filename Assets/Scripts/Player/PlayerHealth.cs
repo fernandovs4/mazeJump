@@ -13,7 +13,13 @@ public class PlayerHealth : MonoBehaviour
     public float tempoAteMorrer = 1f;
     public bool podeUsarEscudo = true;
 
+    public bool isInvulnerable = false;
+
+    public float invulnerabilityTime = 1f;
+
     private GameObject player;
+
+    private GameObject escudo;
 
     
     // Tempo permitido entre cliques para ser considerado um clique duplo
@@ -24,6 +30,10 @@ public class PlayerHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        escudo = transform.Find("Escudo").gameObject;
+        escudo.SetActive(false);
+
+
         player = GameObject.FindWithTag("Player");
     }
 
@@ -59,8 +69,12 @@ public class PlayerHealth : MonoBehaviour
 
     private IEnumerator ShieldON(){
         escudoAtivo = true;
+        escudo.SetActive(true);
+
         yield return new WaitForSeconds(escudoDuracao);
         escudoAtivo = false;
+        escudo.SetActive(false);
+
         StartCoroutine(ShieldCooldown());
     }
 
@@ -68,11 +82,22 @@ public class PlayerHealth : MonoBehaviour
         
         if(escudoAtivo){
             escudoAtivo = false;
+            escudo.SetActive(false);
+            StartCoroutine(Invulnerability());
             podeUsarEscudo = false;
             StartCoroutine(ShieldCooldown());
         }else{
+            if(isInvulnerable){
+                return;
+            }
             StartCoroutine(DeathCoroutine());
         }
+    }
+
+    IEnumerator Invulnerability(){
+        isInvulnerable = true;
+        yield return new WaitForSeconds(invulnerabilityTime);
+        isInvulnerable = false;
     }
 
     IEnumerator ShieldCooldown(){
