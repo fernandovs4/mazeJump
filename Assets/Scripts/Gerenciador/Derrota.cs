@@ -17,6 +17,6 @@ public class Derrota : MonoBehaviour
 
     public void RestartLevel(){
         int currentLevel = PlayerPrefs.GetInt("CurrentLevel", 1);
-        SceneManager.LoadScene("jogoFase" + currentLevel);
+        SceneManager.LoadScene("jogoFase" + (currentLevel-1));
     }
 }

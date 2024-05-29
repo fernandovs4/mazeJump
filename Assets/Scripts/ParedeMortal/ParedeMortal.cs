@@ -9,7 +9,8 @@ public class ParedeMortal : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             // collision.gameObject.GetComponent<Player>().Morrer();
-            Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<PlayerHealth>().PlayerHit();
+            // Destroy(collision.gameObject);
         }
     }
 }
